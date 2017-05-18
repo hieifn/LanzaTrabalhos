@@ -10,7 +10,7 @@
  * *$Date$
  * *$Log$
  * *
- * * Comentario coment
+ * *
  * */
 
 
@@ -18,6 +18,7 @@
 #include <string.h>
 #include "aula0901.h"
 
+#define _lanzaDoido_
 
 tipoErros
 CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
@@ -34,11 +35,11 @@ CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
 	{
 		if(!(indiceOut % 76) && indiceOut != 0)
 		{
-			saida[indiceOut] = '\\';
-			saida[indiceOut + 1] = 'r';
-			saida[indiceOut + 2] = '\\';
-			saida[indiceOut + 3] = 'n';
-			indiceOut += 4;
+
+			saida[indiceOut + 0] = '\r';
+			saida[indiceOut + 1] = '\n';
+
+			indiceOut += 2;
 		}
 
 		saida[indiceOut + 0] = CONJUNTO_BASE_64[( entrada[indiceIn] >> 2) & 0x3F];
@@ -99,8 +100,11 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 		if((entrada[indiceIn] - '/') == 0)
 			auxiliar[indiceIn] = 63;
 		
-		else if((entrada[indiceIn]) == '\\')
+		else if((entrada[indiceIn]) == '\r')
 			auxiliar[indiceIn] = 67;
+		
+		else if((entrada[indiceIn]) == '\n')
+			auxiliar[indiceIn] = 68;
 
 		else if((entrada[indiceIn]) == '=')
 			auxiliar[indiceIn] = 66;
@@ -117,8 +121,6 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 		else
 			auxiliar[indiceIn] = entrada[indiceIn] - '0' + 52;
 			
-		printf("entrada: %c virou %u\n", entrada[indiceIn], auxiliar[indiceIn]);
-
 	}
 
 	auxiliar[indiceIn] = EOS;
@@ -127,8 +129,7 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 	{
 		
 		if(auxiliar[indiceIn] == 67)
-			indiceIn += 4;
-
+			indiceIn += 2;
 	
 		saida[indiceOut + 0] = ( (auxiliar[indiceIn] << 2) & 0xFC ) | ( (auxiliar[indiceIn + 1] >> 4) & 0x03 );
 		
