@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "aula0901.h"
+#include "aula0902.h"
 
 tipoErros
 CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
