@@ -18,8 +18,6 @@
 #include <string.h>
 #include "aula0901.h"
 
-#define _lanzaDoido_
-
 tipoErros
 CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
 {
@@ -79,6 +77,9 @@ CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
 	
 	return OK;
 }
+
+/*oioioioioi*/
+
 
 tipoErros
 DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
