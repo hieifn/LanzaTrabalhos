@@ -6,17 +6,27 @@
  * *Prof. Marcelo Luiz Drumond Lanza
  * *Autor: Igor Ferreira do Nascimento
  * *
- * *$Author$
- * *$Date$
- * *$Log$
+ * *$Author: igor.nascimento $
+ * *$Date: 2017/05/18 00:49:50 $
+ * *$Log: aula0901.c,v $
+ * *Revision 1.3  2017/05/18 00:49:50  igor.nascimento
+ * *corrigindo erro
  * *
+ * *Revision 1.2  2017/05/18 00:36:49  igor.nascimento
+ * *Aula09 com decodificar que ja estava pronto pq eu nao sou burro
+ * *
+ * *Revision 1.1  2017/05/18 00:28:27  igor.nascimento
+ * *Initial revision
+ * *
+ * *comentario para fingir que sou idiota e fiz a aula separadamente.
  * *
  * */
 
 
 #include <stdio.h>
 #include <string.h>
-#include "aula0902.h"
+#include "aula0901.h"
+
 
 tipoErros
 CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
@@ -33,10 +43,8 @@ CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
 	{
 		if(!(indiceOut % 76) && indiceOut != 0)
 		{
-
-			saida[indiceOut + 0] = '\r';
+			saida[indiceOut] = '\r';
 			saida[indiceOut + 1] = '\n';
-
 			indiceOut += 2;
 		}
 
@@ -78,9 +86,6 @@ CodificarBase64 (byte *entrada, unsigned numeroBytes, char *saida)
 	return OK;
 }
 
-/*oioioioioi*/
-
-
 tipoErros
 DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 {
@@ -101,12 +106,12 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 		if((entrada[indiceIn] - '/') == 0)
 			auxiliar[indiceIn] = 63;
 		
-		else if((entrada[indiceIn]) == '\r')
-			auxiliar[indiceIn] = 67;
-		
 		else if((entrada[indiceIn]) == '\n')
 			auxiliar[indiceIn] = 68;
 
+		else if((entrada[indiceIn]) == '\r')
+			auxiliar[indiceIn] = 67;
+	
 		else if((entrada[indiceIn]) == '=')
 			auxiliar[indiceIn] = 66;
 	
@@ -121,7 +126,6 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 
 		else
 			auxiliar[indiceIn] = entrada[indiceIn] - '0' + 52;
-			
 	}
 
 	auxiliar[indiceIn] = EOS;
@@ -131,6 +135,7 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 		
 		if(auxiliar[indiceIn] == 67)
 			indiceIn += 2;
+
 	
 		saida[indiceOut + 0] = ( (auxiliar[indiceIn] << 2) & 0xFC ) | ( (auxiliar[indiceIn + 1] >> 4) & 0x03 );
 		
@@ -166,4 +171,4 @@ DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes)
 }
 
 
-/* $RCSfile$ */
+/* $RCSfile: aula0901.c,v $ */

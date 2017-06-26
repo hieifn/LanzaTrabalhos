@@ -6,9 +6,12 @@
  *      * *Prof. Marcelo Luiz Drumond Lanza
  *       * *Autor: Igor Ferreira do Nascimento
  *        * *
- *         * *$Author$
- *          * *$Date$
- *           * *$Log$
+ *         * *$Author: igor.nascimento $
+ *          * *$Date: 2017/05/18 00:29:16 $
+ *           * *$Log: aula0901.h,v $
+ *           * *Revision 1.1  2017/05/18 00:29:16  igor.nascimento
+ *           * *Initial revision
+ *           * *
  *             * */
 
 
@@ -18,7 +21,7 @@
 
 #ifndef _AULA0901_
 
-#define _AULA0901_ "@(#)aula0901.h $Revision$"
+#define _AULA0901_ "@(#)aula0901.h $Revision: 1.1 $"
 
 typedef enum{OK = 0, entradaVazia = 1, saidaVazia = 2, erroConversao = 3, erroDecodificacao = 4} tipoErros;
 
@@ -33,6 +36,6 @@ tipoErros
 DecodificarBase64 (char *entrada, byte *saida, unsigned *numeroBytes);
 
 #endif
-/* $RCSfile$ */
+/* $RCSfile: aula0901.h,v $ */
 
 

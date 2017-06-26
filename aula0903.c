@@ -8,9 +8,9 @@
 *Autor: Igor Ferreira do Nascimento
 *
 *$Author: igor.nascimento $
-*$Date: 2017/05/18 00:29:32 $
-*$Log: aula0902.c,v $
-*Revision 1.1  2017/05/18 00:29:32  igor.nascimento
+*$Date: 2017/05/18 00:54:01 $
+*$Log: aula0903.c,v $
+*Revision 1.1  2017/05/18 00:54:01  igor.nascimento
 *Initial revision
 *
 */
@@ -36,9 +36,10 @@
 int
 main(int argc, char *argv[])
 {
-        unsigned indice;
-	byte entrada[TAMANHO_MAXIMO];
-	char saida[TAMANHO_MAXIMO*(4/3)];
+	unsigned indice;
+	char entrada[TAMANHO_MAXIMO*(4/3)];
+	byte saida[TAMANHO_MAXIMO];
+	unsigned tamanho;
 	
 	
 	if (argc != NUMERO_ARGUMENTOS)
@@ -56,10 +57,9 @@ main(int argc, char *argv[])
 	for(indice = 0; indice < strlen(argv[1]); indice++)
 		entrada[indice] = argv[1][indice];
 
-	CodificarBase64(entrada, strlen(argv[1]), saida);
+	DecodificarBase64(entrada, saida, &tamanho);
 
-	printf ("Codificado: %s\n", saida);
-	
+	printf ("Decodificado: %s, Tamanho :  %u\n", saida, tamanho);
 
         return OK;
 }
